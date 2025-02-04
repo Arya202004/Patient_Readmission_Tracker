@@ -71,7 +71,63 @@ This project provides a **data-driven approach** to **predict and analyze readmi
 
 ---
 
+## 🔄 Data Preprocessing  
 
+### 1️⃣ **Data Collection**  
+- Gather patient records from hospital databases, public healthcare datasets, or simulated data.  
+- Key features include:  
+  - **Demographics:** Age, gender, ethnicity  
+  - **Medical history:** Diagnoses, comorbidities, previous admissions  
+  - **Treatment details:** Medications, procedures, length of stay  
+  - **Hospital records:** Bed occupancy, discharge details, admission reasons  
+
+### 2️⃣ **Handling Missing Data**  
+- Identify missing values using `df.isnull().sum()`.  
+- Strategies for missing data:  
+  - **Numerical features:** Impute using mean/median/mode.  
+  - **Categorical features:** Use mode or create an "Unknown" category.  
+  - **Drop rows/columns:** If missing data exceeds a threshold (e.g., 30%).  
+
+### 3️⃣ **Data Cleaning**  
+- Remove duplicate records.  
+- Standardize column names for consistency.  
+- Convert inconsistent data formats (e.g., date formats, categorical encoding).  
+
+### 4️⃣ **Feature Engineering**  
+- **Creating new features:**  
+  - Calculate **readmission gap** (days between last discharge and readmission).  
+  - Generate **risk score** based on past hospitalizations.  
+- **Encoding categorical variables:**  
+  - One-hot encoding for non-ordinal categories (e.g., gender, admission type).  
+  - Label encoding for ordinal categories (e.g., severity levels).  
+- **Scaling numerical data:**  
+  - Apply Min-Max Scaling or Standardization (Z-score normalization).  
+
+### 5️⃣ **Handling Outliers**  
+- Use box plots and IQR method to detect extreme values.  
+- Cap/floor extreme values or apply transformations (e.g., log transformation).  
+
+### 6️⃣ **Splitting Data for Training and Testing**  
+- Split dataset into training (80%) and testing (20%) sets using:  
+  ```python
+  from sklearn.model_selection import train_test_split
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+  ```
+  
+### 7️⃣ **Balancing the Dataset (If Needed)**  
+- Check for class imbalance in readmission labels (`df['readmitted'].value_counts()`).  
+- If imbalanced:  
+  - Use **SMOTE (Synthetic Minority Over-sampling Technique)**.  
+  - Apply **undersampling** or **oversampling** methods.  
+
+### 8️⃣ **Saving the Preprocessed Data**  
+- Store the cleaned and processed dataset as a `.csv` file for reproducibility.  
+- Example:  
+  ```python
+  df.to_csv("preprocessed_data.csv", index=False)
+  ```
+
+---
 
 
 📜 License
