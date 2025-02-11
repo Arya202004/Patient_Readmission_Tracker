@@ -129,20 +129,3 @@ This project provides a **data-driven approach** to **predict and analyze readmi
 
 ---
 
-
-📜 License
-This project is licensed under the MIT License. Feel free to use and modify it for your needs.
-
-📞 Contact & Support
-For any queries or suggestions, feel free to reach out:
-📧 Email: your.email@example.com
-🌐 LinkedIn: Your LinkedIn
-
-💡 If you find this project useful, don't forget to give it a ⭐ on GitHub! 🚀
-
-yaml
-Copy
-
----
-
-This **README.md** provides **clear documentation** for users, contributors, and hospital staff. L
