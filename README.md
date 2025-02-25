@@ -1,11 +1,11 @@
 # Patient_Readmission_Tracker 
 
-## Project Overview-  
+## Project Overview 
 This project aims to develop a **patient readmission tracking and analysis system** to help hospitals **monitor patient records, predict readmission rates, and optimize resource allocation**. By analyzing patient data, we can identify high-risk patients and recommend interventions to reduce hospital readmissions.  
 
 ---
 
-## Features-  
+## Features
 - **Patient Record Management**: Store and manage patient details securely.  
 - **Readmission Prediction**: Predict the likelihood of a patient’s readmission using machine learning.  
 - **Resource Allocation**: Help hospitals allocate beds, staff, and medical resources effectively.  
@@ -14,7 +14,7 @@ This project aims to develop a **patient readmission tracking and analysis syste
 
 ---
 
-## Problem Statement-  
+## Problem Statement  
 Hospital readmissions are a significant burden on healthcare systems, leading to increased costs and reduced efficiency. The lack of a proper **tracking mechanism** makes it difficult for hospitals to:  
 1. **Monitor patient records** systematically.  
 2. **Identify high-risk patients** who are likely to be readmitted.  
@@ -25,7 +25,6 @@ This project provides a **data-driven approach** to **predict and analyze readmi
 ---
 
 ## 📌 Requirements Gathering and Planning  
-
 ### 1️⃣ **Understanding the Problem Statement**  
 - Analyze the impact of hospital readmissions on costs and resource allocation.  
 - Identify key factors contributing to patient readmissions.  
@@ -72,7 +71,6 @@ This project provides a **data-driven approach** to **predict and analyze readmi
 ---
 
 ## 🔄 Data Preprocessing  
-
 ### 1️⃣ **Data Collection**  
 - Gather patient records from hospital databases, public healthcare datasets, or simulated data.  
 - Key features include:  
