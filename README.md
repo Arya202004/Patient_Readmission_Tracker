@@ -74,17 +74,17 @@ This project provides a **data-driven approach** to **predict and analyze readmi
 ### 1️⃣ **Data Collection**  
 - Gather patient records from hospital databases, public healthcare datasets, or simulated data.  
 - Key features include:  
-  - **Demographics:** Age, gender, ethnicity  
-  - **Medical history:** Diagnoses, comorbidities, previous admissions  
-  - **Treatment details:** Medications, procedures, length of stay  
-  - **Hospital records:** Bed occupancy, discharge details, admission reasons  
+  **Demographics:** Age, gender, ethnicity  
+  **Medical history:** Diagnoses, comorbidities, previous admissions  
+  **Treatment details:** Medications, procedures, length of stay  
+  **Hospital records:** Bed occupancy, discharge details, admission reasons  
 
 ### 2️⃣ **Handling Missing Data**  
 - Identify missing values using `df.isnull().sum()`.  
 - Strategies for missing data:  
-  - **Numerical features:** Impute using mean/median/mode.  
-  - **Categorical features:** Use mode or create an "Unknown" category.  
-  - **Drop rows/columns:** If missing data exceeds a threshold (e.g., 30%).  
+  **Numerical features:** Impute using mean/median/mode.  
+  **Categorical features:** Use mode or create an "Unknown" category.  
+  **Drop rows/columns:** If missing data exceeds a threshold (e.g., 30%).  
 
 ### 3️⃣ **Data Cleaning**  
 - Remove duplicate records.  
@@ -93,13 +93,13 @@ This project provides a **data-driven approach** to **predict and analyze readmi
 
 ### 4️⃣ **Feature Engineering**  
 - **Creating new features:**  
-  - Calculate **readmission gap** (days between last discharge and readmission).  
-  - Generate **risk score** based on past hospitalizations.  
+Calculate readmission gap (days between last discharge and readmission).  
+Generate risk score based on past hospitalizations.  
 - **Encoding categorical variables:**  
-  - One-hot encoding for non-ordinal categories (e.g., gender, admission type).  
-  - Label encoding for ordinal categories (e.g., severity levels).  
+One-hot encoding for non-ordinal categories (e.g., gender, admission type).  
+Label encoding for ordinal categories (e.g., severity levels).  
 - **Scaling numerical data:**  
-  - Apply Min-Max Scaling or Standardization (Z-score normalization).  
+Apply Min-Max Scaling or Standardization (Z-score normalization).  
 
 ### 5️⃣ **Handling Outliers**  
 - Use box plots and IQR method to detect extreme values.  
@@ -115,8 +115,8 @@ This project provides a **data-driven approach** to **predict and analyze readmi
 ### 7️⃣ **Balancing the Dataset (If Needed)**  
 - Check for class imbalance in readmission labels (`df['readmitted'].value_counts()`).  
 - If imbalanced:  
-  - Use **SMOTE (Synthetic Minority Over-sampling Technique)**.  
-  - Apply **undersampling** or **oversampling** methods.  
+  Use SMOTE (Synthetic Minority Over-sampling Technique).  
+  Apply undersampling or oversampling methods.  
 
 ### 8️⃣ **Saving the Preprocessed Data**  
 - Store the cleaned and processed dataset as a `.csv` file for reproducibility.  
@@ -127,11 +127,11 @@ This project provides a **data-driven approach** to **predict and analyze readmi
 
 ---
 
-### COCOMO Cost Estimation for Patient Readmission Tracker  
+## **COCOMO Cost Estimation for Patient Readmission Tracker**  
 
 The COCOMO model (Constructive Cost Model) is used to estimate the development effort, time, and cost for software projects based on the size of the codebase and complexity.  
 
-#### COCOMO Model Formulae 
+### **COCOMO Model Formulae** 
 
 1. *Effort (E) in Person-Months (PM):*  
    \[
@@ -146,7 +146,7 @@ The COCOMO model (Constructive Cost Model) is used to estimate the development e
    \text{Total Cost} = E \times \text{Average Developer Salary per Month}
    \]  
 
-#### Estimation Parameters 
+### **Estimation Parameters** 
 
 | Parameter               | Value |
 |-------------------------|----------------|
@@ -155,7 +155,7 @@ The COCOMO model (Constructive Cost Model) is used to estimate the development e
 | Effort Multiplier Constants (Semi-Detached Mode) | *a = 3.0, b = 1.12, c = 2.5, d = 0.35* |
 | Average Developer Salary | *$5,000 per month* |
 
-#### Cost Breakdown  
+### **Cost Breakdown**
 
 1. Effort Estimation: 
    \[
@@ -174,7 +174,7 @@ The COCOMO model (Constructive Cost Model) is used to estimate the development e
 
 ---
 
-### Factors Contributing to Cost  
+### **Factors Contributing to Cost**  
 
 1. Project Complexity  
    - The *semi-detached* model assumes moderate complexity, with a mix of well-defined and evolving requirements.  
@@ -193,7 +193,7 @@ The COCOMO model (Constructive Cost Model) is used to estimate the development e
 
 ---
 
-### Final Estimation Summary  
+### **Final Estimation Summary**  
 
 | Metric | Estimated Value |
 |--------|----------------|
@@ -204,5 +204,57 @@ The COCOMO model (Constructive Cost Model) is used to estimate the development e
 This estimation provides an overview of the development effort and cost required for the *Patient Readmission Tracking Model*, considering machine learning, database integration, and visualization complexities.  
 
 ---
+## 📅 **Scheduling the Project using a Gantt Chart**
+A Gantt Chart helps plan the project timeline from **March 2025 - May 2025**, covering:
+- Task identification
+- Resource allocation
+- Milestone tracking
+- Deadline management
+
+---
+
+## 📌 **Project Timeline (March 2025 - May 2025)**
+The **Gantt Chart** ensures efficient project execution by mapping key tasks over time.
+
+| Task                  | March 2025 | April 2025 | May 2025 |
+|-----------------------|-----------|------------|----------|
+| System Design        | ✅        |            |          |
+| UML Diagram Creation | ✅        |            |          |
+| Database Setup       | ✅        | ✅         |          |
+| Feature Development  |           | ✅         | ✅       |
+| Report Generation    |           | ✅         | ✅       |
+| Testing & Deployment |           |            | ✅       |
+
+---
+## **UML Use Case Diagram**
+### 1️⃣ **Use Case Diagrams**
+Use Case Diagrams provide a **graphical overview** of the system’s functionalities, illustrating actors, interactions, and system use cases.
+
+### 2️⃣ **Actors in the System**
+- **Primary Actor:**
+  - **Patient**: Interacts with the system to view readmission risk.
+  - **Doctor**: Updates patient data and assesses readmission risk.
+  - **Hospital Admin**: Generates reports and manages alerts.
+  
+- **Supporting Actor:**
+  - **External Database**: Supplies historical patient data.
+
+### 3️⃣ **Use Cases**
+- **Login**: Authentication for doctors, patients, and admins.
+- **View Readmission Risk**: Predicts the likelihood of readmission.
+- **Update Patient Data**: Doctors update patient records.
+- **Generate Reports**: Admin generates detailed patient readmission reports.
+- **Receive Alerts**: System notifies stakeholders about high-risk patients.
+
+### 4️⃣ **Use Case Relationships**
+- **Include Relationship**: 
+  - "View Readmission Risk" ➝ Includes ➝ "Login"*
+  - "Update Patient Data" ➝ Includes ➝ "Login"
+- **Extend Relationship**:
+  - "Generate Reports" ➝ Extends ➝ "Update Patient Data"
+
+---
+
+
 
 
