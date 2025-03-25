@@ -252,6 +252,54 @@ Use Case Diagrams provide a **graphical overview** of the system’s functionali
   - "Update Patient Data" ➝ Includes ➝ "Login"
 - **Extend Relationship**:
   - "Generate Reports" ➝ Extends ➝ "Update Patient Data"
+ 
+  ## UML Use Case Diagram
+
+```mermaid
+graph TD;
+    A[Patient] -->|Logs in| B[Login];
+    C[Doctor] -->|Logs in| B;
+    D[Hospital Admin] -->|Logs in| B;
+    B -->|Includes| E[View Readmission Risk];
+    B -->|Includes| F[Update Patient Data];
+    F -->|Extends| G[Generate Reports];
+    H[External Database] -->|Provides Data| F;
+    G -->|Notifies| I[Receive Alerts];
+```
+
+## Data Flow Diagram (DFD)
+
+```mermaid
+graph TD;
+    A[Patient] -->|Provides Symptoms| B[Predict Readmission Risk];
+    C[Doctor] -->|Updates Records| D[Update Patient Data];
+    D -->|Stores Data| E[Patient Database];
+    B -->|Stores Prediction| F[Readmission Reports];
+    G[Hospital Admin] -->|Generates Reports| F;
+    H[External Database] -->|Provides Historical Data| D;
+    F -->|Triggers| I[Send Alerts];
+```
+
+## Control Flow Diagram (CFD)
+
+```mermaid
+graph TD;
+    Start[Start] --> A[Check Login Credentials];
+    A -->|Valid| B[Authenticate User];
+    A -->|Invalid| End[End];
+    B --> C[Predict Readmission Risk];
+    C -->|High Risk| D[Send Alerts];
+    C -->|Low Risk| E[Monitor Patient];
+    F[Doctor Updates Patient Data] --> G[Verify Patient Data Update];
+    G -->|Valid| H[Store Updated Data];
+    G -->|Invalid| F;
+    H --> I[Generate Reports];
+    I --> J[Notify Admin];
+    J --> End;
+```
+
+
+
 
 ---
 
