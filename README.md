@@ -302,6 +302,82 @@ graph TD;
 
 
 ---
+# Patient Readmission Tracker System
+
+## UML Class Diagram
+
+```mermaid
+classDiagram
+    class Patient {
+        +int patientID
+        +string name
+        +int age
+        +string gender
+        +string medicalHistory
+        +string contactDetails
+        +viewMedicalHistory()
+        +updateDetails()
+    }
+
+    class Hospital {
+        +int hospitalID
+        +string name
+        +string location
+        +int capacity
+        +admitPatient()
+        +dischargePatient()
+    }
+
+    class AdmissionRecord {
+        +int recordID
+        +int patientID
+        +string admissionDate
+        +string dischargeDate
+        +string diagnosis
+        +string treatment
+        +addAdmissionRecord()
+        +updateRecord()
+        +fetchRecords()
+    }
+
+    class ReadmissionAnalysis {
+        +int analysisID
+        +int patientID
+        +float readmissionRisk
+        +string riskFactors
+        +float predictedCost
+        +analyzeReadmissionRisk()
+        +generateReport()
+    }
+
+    class Doctor {
+        +int doctorID
+        +string name
+        +string specialization
+        +int experience
+        +assignTreatment()
+        +consultPatient()
+    }
+
+    class Billing {
+        +int billID
+        +int patientID
+        +float totalCost
+        +string insuranceDetails
+        +generateBill()
+        +processPayment()
+    }
+
+    %% Relationships
+    Patient "1" --o "many" AdmissionRecord : has
+    Patient "1" --o "1" ReadmissionAnalysis : analyzedBy
+    Patient "1" --o "many" Billing : billedFor
+    Patient "1" --o "1" Hospital : admittedTo
+    Hospital "1" o-- "many" Doctor : employs
+    Hospital "1" o-- "many" AdmissionRecord : maintains
+    AdmissionRecord "1" *-- "1" Patient : belongsTo
+    Doctor <|-- Surgeon
+    Doctor <|-- Physician
 
 
 
