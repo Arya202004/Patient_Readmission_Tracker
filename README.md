@@ -297,88 +297,84 @@ graph TD;
     I --> J[Notify Admin];
     J --> End;
 ```
-
-
-
-
----
-# Patient Readmission Tracker System
-
-## UML Class Diagram
+## 📦 UML Class Diagram
 
 ```mermaid
 classDiagram
     class Patient {
-        +int patientID
-        +string name
+        +String patientID
+        +String name
         +int age
-        +string gender
-        +string medicalHistory
-        +string contactDetails
-        +viewMedicalHistory()
-        +updateDetails()
+        +String diagnosis
+        +Date dischargeDate
+        +getPatientDetails()
     }
 
-    class Hospital {
-        +int hospitalID
-        +string name
-        +string location
-        +int capacity
-        +admitPatient()
-        +dischargePatient()
+    class HospitalDatabase {
+        +getPatientRecords(patientID)
+        +storePatientData(Patient)
     }
 
-    class AdmissionRecord {
-        +int recordID
-        +int patientID
-        +string admissionDate
-        +string dischargeDate
-        +string diagnosis
-        +string treatment
-        +addAdmissionRecord()
-        +updateRecord()
-        +fetchRecords()
-    }
-
-    class ReadmissionAnalysis {
-        +int analysisID
-        +int patientID
-        +float readmissionRisk
-        +string riskFactors
-        +float predictedCost
-        +analyzeReadmissionRisk()
-        +generateReport()
+    class RiskAssessmentModel {
+        +analyzeRisk(Patient): float
     }
 
     class Doctor {
-        +int doctorID
-        +string name
-        +string specialization
-        +int experience
-        +assignTreatment()
-        +consultPatient()
+        +requestPatientHistory(patientID)
+        +reviewRiskScore(score)
+        +takeAction()
     }
 
-    class Billing {
-        +int billID
-        +int patientID
-        +float totalCost
-        +string insuranceDetails
-        +generateBill()
-        +processPayment()
+    class AlertSystem {
+        +sendAlert(Doctor, Patient, score)
     }
 
-    %% Relationships
-    Patient "1" --o "many" AdmissionRecord : has
-    Patient "1" --o "1" ReadmissionAnalysis : analyzedBy
-    Patient "1" --o "many" Billing : billedFor
-    Patient "1" --o "1" Hospital : admittedTo
-    Hospital "1" o-- "many" Doctor : employs
-    Hospital "1" o-- "many" AdmissionRecord : maintains
-    AdmissionRecord "1" *-- "1" Patient : belongsTo
-    Doctor <|-- Surgeon
-    Doctor <|-- Physician
+    Patient --> HospitalDatabase : retrieves records
+    Doctor --> HospitalDatabase : requests patient history
+    Doctor --> RiskAssessmentModel : submits patient data
+    RiskAssessmentModel --> AlertSystem : sends alert
+    AlertSystem --> Doctor : notifies doctor
+```
+## ⏳ Sequence Diagram
 
+```mermaid
+sequenceDiagram
+    title Patient Readmission Tracker - Sequence Diagram
 
+    participant Patient
+    participant Doctor
+    participant HospitalDatabase
+    participant RiskAssessmentModel
+    participant AlertSystem
 
+    Note over Patient,Doctor: Patient is discharged and enters system
 
+    Doctor->>HospitalDatabase: requestPatientHistory(patientID)
+    HospitalDatabase-->>Doctor: returnPatientRecords()
+
+    Doctor->>RiskAssessmentModel: analyzeRisk(patientData)
+    RiskAssessmentModel->>RiskAssessmentModel: process patient data
+    RiskAssessmentModel-->>Doctor: returnRiskScore(score)
+
+    alt score > threshold
+        RiskAssessmentModel-->>AlertSystem: sendAlert(Patient, score)
+        AlertSystem-->>Doctor: notifyHighRisk(Patient)
+        Doctor->>Doctor: takeFollowUpAction()
+    else score <= threshold
+        Doctor->>Doctor: monitorNormally()
+    end
+```
+## ✅ Test Suite Design for Patient Readmission Tracker
+
+| **Test Case ID** | **Test Scenario**                                      | **Test Steps**                                                                 | **Expected Result**                                                    | **Actual Result** | **Status** |
+|------------------|--------------------------------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------|-------------------|------------|
+| TC_001           | Retrieve patient data from database                    | 1. Request patient record by ID<br>2. Fetch data from `HospitalDatabase`      | Patient record is retrieved and shown to the doctor                    | TBD               | TBD        |
+| TC_002           | Submit patient data to risk model                      | 1. Send patient data to `RiskAssessmentModel`                                 | Model accepts input without error                                      | TBD               | TBD        |
+| TC_003           | Predict readmission risk                               | 1. Call `analyzeRisk()` function<br>2. Wait for result                         | Returns a risk score (0-1 float value)                                 | TBD               | TBD        |
+| TC_004           | Trigger alert for high-risk patient                    | 1. Pass high score to `AlertSystem`                                           | Alert is successfully triggered and delivered to doctor                | TBD               | TBD        |
+| TC_005           | No alert for low-risk patient                          | 1. Pass low score to `AlertSystem`                                            | No alert is triggered                                                  | TBD               | TBD        |
+| TC_006           | End-to-end flow for high-risk patient                  | 1. Retrieve -> Assess -> Alert                                                 | Doctor receives alert and takes action                                 | TBD               | TBD        |
+| TC_007           | End-to-end flow for low-risk patient                   | 1. Retrieve -> Assess -> Monitor                                               | Doctor monitors without alert                                          | TBD               | TBD        |
+| TC_008           | Handle missing patient ID                              | 1. Request invalid ID from `HospitalDatabase`                                 | System throws or handles 'Patient Not Found' error                     | TBD               | TBD        |
+| TC_009           | Risk model edge cases (e.g., score = 0 or 1)           | 1. Manually feed edge-case inputs to model                                    | Model returns appropriate scores without crash                         | TBD               | TBD        |
+| TC_010           | System response time for end-to-end flow               | 1. Run full scenario and measure time                                          | Response time within acceptable limit (<2s)                            | TBD               | TBD        |
